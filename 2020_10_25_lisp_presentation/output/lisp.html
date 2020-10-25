@@ -1,0 +1,223 @@
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+\begin{frame}{A bit of context}
+\protect\hypertarget{a-bit-of-context}{}
+\begin{itemize}
+\tightlist
+\item
+  The part II of this paper has never been written.
+\item
+  LISP and Fortran were written for the IBM 704 (available at MIT).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ``Only computer which can handle complex math'' - Wikipedia
+  \end{itemize}
+\item
+  Fortran older than LISP of one year.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    One of the oldest high level programming language
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{IBM 704}
+\protect\hypertarget{ibm-704}{}
+\begin{figure}
+\centering
+\includegraphics{images/IBM_704.jpg}
+\caption{The IBM 704}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Good Old Languages}
+\protect\hypertarget{good-old-languages}{}
+\begin{itemize}
+\tightlist
+\item
+  IPL2 (1956) - List processing in Assembly.
+\item
+  Fortran (1957) - No list processing
+\item
+  LISP (TODO when implementation?)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Goals of LISP}
+\protect\hypertarget{goals-of-lisp}{}
+\begin{itemize}
+\tightlist
+\item
+  AI (term coined by McCarthy)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    They thought they were almost there in the 50s / 60s.
+  \item
+    McCarthy wrote a ``funny paper'' later ``HUMAN-LEVEL AI IS HARDER
+    THAN IT SEEMED IN 1955'' (
+  \end{itemize}
+\item
+  Chess player (beginning of CS game theory).
+\item
+  Programming the Advice Taker (proposed in 1958).
+\end{itemize}
+\end{frame}
+
+\hypertarget{the-paper}{%
+\section{The Paper}\label{the-paper}}
+
+\begin{frame}{Advice Taker}
+\protect\hypertarget{advice-taker}{}
+\begin{quote}
+``representing information about the world by sentences in a suitable
+formal language and a reasoning program that would decide what to do by
+making logical inferences. Representing sentences by list structure
+seemed appropriate - it still is - and a list processing language also
+seemed appropriate for programming the operations involved in deduction
+- and still is.'' - McCarthy, 1979
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  From the paper: LISP handle declarative and imperative sentences.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Recursion}
+\protect\hypertarget{recursion}{}
+\begin{itemize}
+\tightlist
+\item
+  Describe formalism for defining function recursively.
+\item
+  First programming language with recursion.
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{images/recursive_function.png}
+\caption{Recursion!}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Conditionals}
+\protect\hypertarget{conditionals}{}
+\begin{itemize}
+\tightlist
+\item
+  Invented conditional expression from propositional logic
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Predicate: function returning \#T or \#F
+  \end{itemize}
+\item
+  Idea of conditional in programming introduced here (not present in
+  Assembly)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Functions}
+\protect\hypertarget{functions}{}
+\begin{itemize}
+\tightlist
+\item
+  Precise not the usual mathematics term ``function''.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Same input potentially lead to different output.
+  \end{itemize}
+\item
+  Inspired by Church's lambda-notation (1936).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Turing Machine (1936) ``too complicated''.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{S and M expressions}
+\protect\hypertarget{s-and-m-expressions}{}
+\begin{block}{M-Expression (paper)}
+\protect\hypertarget{m-expression-paper}{}
+car {[}cons {[}x; y{]}{]} = x cdr {[}cons {[}x; y{]}{]} = y
+\end{block}
+
+\begin{block}{S-Expression (paper)}
+\protect\hypertarget{s-expression-paper}{}
+(CAR(CONS,x,y)) (CDR(CONS,x,y))
+\end{block}
+
+\begin{block}{Actual code (Scheme)}
+\protect\hypertarget{actual-code-scheme}{}
+(car (cons 1 2)) (cdr (cons 1 2))
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\protect\hypertarget{section}{}
+\end{frame}
+
+\hypertarget{legacy}{%
+\section{Legacy}\label{legacy}}
+
+\begin{frame}{The most important}
+\protect\hypertarget{the-most-important}{}
+\begin{itemize}
+\tightlist
+\item
+  First functional programming language
+\item
+  Smalltalk (70s) was very influenced by LISP (today: Pharo)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    One rule
+  \item
+    Garbage collection
+  \item
+    \ldots{} but don't like special forms
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{LISP today}
+\protect\hypertarget{lisp-today}{}
+\begin{itemize}
+\tightlist
+\item
+  Common LISP
+\item
+  Emacs LISP
+\item
+  Clojure
+\item
+  Scheme
+\end{itemize}
+\end{frame}
+
+\begin{frame}{References}
+\protect\hypertarget{references}{}
+\begin{itemize}
+\tightlist
+\item
+  Slides TODO
+\item
+  \href{http://www-formal.stanford.edu/jmc/slides/wrong/wrong-sli/wrong-sli.html}{HUMAN-LEVEL
+  AI IS HARDER THAN IT SEEMED IN 1955}
+\end{itemize}
+\end{frame}

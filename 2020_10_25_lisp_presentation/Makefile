@@ -6,21 +6,27 @@
 NAME := lisp
 THEME := "Berlin"
 COLORTHEME = "seahorse"
+LOGO = "images/Lisplogo.png"
 
 # ARGS
+PDF_ARGS = -t beamer -V theme=$(THEME) -V colortheme=$(COLORTHEME)  -V apsectration="169" --pdf-engine=xelatex
+WITH_LOGO = -V logo=$(LOGO)
 
-# markdown-raw_tex: display slash correctly, and not as "begin latex shenanigans"
-PDF_ARGS = -t beamer -V theme=$(THEME) -V colortheme=$(COLORTHEME) -V apsectration="169"
+all: clean output output/$(NAME).pdf output/$(NAME).html
 
-all: output output/lisp.pdf
+pdf: output output/$(NAME).pdf 
 
-pdf: output output/lisp.pdf 
+html: output output/$(NAME).html 
 
 output:
 	@mkdir -p ./output
 
 output/%.pdf: Makefile | output
 	pandoc $(PDF_ARGS) $(NAME).md -o $@
+
+output/%.html: Makefile | output
+	pandoc $(PDF_ARGS) $(NAME).md -o $@
+
 
 clean: phony
 	@rm -rf ./output
