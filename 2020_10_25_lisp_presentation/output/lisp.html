@@ -1,12 +1,44 @@
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
+\begin{frame}{WARNING}
+\protect\hypertarget{warning}{}
+\begin{itemize}
+\tightlist
+\item
+  I make mistakes.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Sorry if I did!
+  \end{itemize}
+\item
+  Feedback welcome.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Who's John McCarthy}
+\protect\hypertarget{whos-john-mccarthy}{}
+\begin{itemize}
+\tightlist
+\item
+  TODO
+\item
+  The part II of this paper has never been written.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    What
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
 \begin{frame}{A bit of context}
 \protect\hypertarget{a-bit-of-context}{}
 \begin{itemize}
 \tightlist
-\item
-  The part II of this paper has never been written.
 \item
   LISP and Fortran were written for the IBM 704 (available at MIT).
 
@@ -16,12 +48,24 @@
     ``Only computer which can handle complex math'' - Wikipedia
   \end{itemize}
 \item
-  Fortran older than LISP of one year.
+  Only Fortran older than LISP.
 
   \begin{itemize}
   \tightlist
   \item
-    One of the oldest high level programming language
+    One of the oldest high level programming language (non-assembly
+    language).
+  \end{itemize}
+\item
+  Today, LISP is a family of languages
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Many "dialects*
+  \item
+    This paper is the foundation of all of these languages\ldots{} and
+    more (JINGLE!).
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -44,14 +88,13 @@
 \item
   Fortran (1957) - No list processing
 \item
-  LISP (TODO when implementation?)
+  LISP (for LISt Processing) (1962?)
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Goals of LISP}
 \protect\hypertarget{goals-of-lisp}{}
 \begin{itemize}
-\tightlist
 \item
   AI (term coined by McCarthy)
 
@@ -67,6 +110,9 @@
   Chess player (beginning of CS game theory).
 \item
   Programming the Advice Taker (proposed in 1958).
+\item
+  \ldots{} what about for people to understand? (\emph{MORE ON THAT
+  LATER})
 \end{itemize}
 \end{frame}
 
@@ -89,6 +135,29 @@ seemed appropriate for programming the operations involved in deduction
 \item
   From the paper: LISP handle declarative and imperative sentences.
 \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{S-Expression and M-expressions}
+\protect\hypertarget{s-expression-and-m-expressions}{}
+\begin{block}{S-Expression (paper)}
+\protect\hypertarget{s-expression-paper}{}
+Characters: \texttt{(} \texttt{.} \texttt{)}
+
+(CAR(CONS,x,y))\\
+(CDR(CONS,x,y))
+\end{block}
+
+\begin{block}{M-Expression (paper, never implemented)}
+\protect\hypertarget{m-expression-paper-never-implemented}{}
+car {[}cons {[}x; y{]}{]} = x\\
+cdr {[}cons {[}x; y{]}{]} = y
+\end{block}
+
+\begin{block}{Actual code (Scheme)}
+\protect\hypertarget{actual-code-scheme}{}
+(car (cons x y))\\
+(cdr (cons x y))
+\end{block}
 \end{frame}
 
 \begin{frame}{Recursion}
@@ -131,7 +200,8 @@ seemed appropriate for programming the operations involved in deduction
 \begin{itemize}
 \tightlist
 \item
-  Precise not the usual mathematics term ``function''.
+  Precise that it's \textbf{not} the usual mathematics term
+  ``function''.
 
   \begin{itemize}
   \tightlist
@@ -149,26 +219,70 @@ seemed appropriate for programming the operations involved in deduction
 \end{itemize}
 \end{frame}
 
-\begin{frame}{S and M expressions}
-\protect\hypertarget{s-and-m-expressions}{}
-\begin{block}{M-Expression (paper)}
-\protect\hypertarget{m-expression-paper}{}
-car {[}cons {[}x; y{]}{]} = x cdr {[}cons {[}x; y{]}{]} = y
+\begin{frame}[fragile]{Linked List (basic data structure)}
+\protect\hypertarget{linked-list-basic-data-structure}{}
+\begin{block}{Modern LISP (Scheme)}
+\protect\hypertarget{modern-lisp-scheme}{}
+\texttt{(car\ (cons\ x\ y))}~\\
+\texttt{(cdr\ (cons\ x\ y))}
 \end{block}
 
-\begin{block}{S-Expression (paper)}
-\protect\hypertarget{s-expression-paper}{}
-(CAR(CONS,x,y)) (CDR(CONS,x,y))
-\end{block}
+\begin{block}{Pointer diagram}
+\protect\hypertarget{pointer-diagram}{}
+\texttt{(cons\ 42\ (cons\ 69\ 613)))}
 
-\begin{block}{Actual code (Scheme)}
-\protect\hypertarget{actual-code-scheme}{}
-(car (cons 1 2)) (cdr (cons 1 2))
+\begin{figure}
+\centering
+\includegraphics{images/cons-cell.png}
+\caption{Pointer diagram}
+\end{figure}
 \end{block}
 \end{frame}
 
-\begin{frame}{}
-\protect\hypertarget{section}{}
+\begin{frame}[fragile]{SRSLY?}
+\protect\hypertarget{srsly}{}
+\begin{itemize}
+\tightlist
+\item
+  IBM 704 haunting even most modern LISP
+\end{itemize}
+
+\texttt{caddr{[}x{]}\ for\ car{[}cdr{[}cdr{[}x{]}{]}}~\\
+\texttt{(caddr\ x)\ equivalent\ to\ (car\ (cdr\ (cdr\ x))))}
+
+\begin{itemize}
+\tightlist
+\item
+  About not using single letter for atomic symbol like in mathematics:
+\end{itemize}
+
+\begin{quote}
+``Second, it is convenient to allow English words and phrases to stand
+for atomic entities for mnemonic reasons'' - John McCarthy (paper)
+\end{quote}
+
+\begin{itemize}
+\tightlist
+\item
+  \ldots{} what about
+\end{itemize}
+
+\begin{block}{Lists}
+\protect\hypertarget{lists}{}
+\begin{itemize}
+\tightlist
+\item
+  List data structure
+\item
+  car / cdr from IBM 704
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Curse following us till NOW
+  \end{itemize}
+\end{itemize}
+\end{block}
 \end{frame}
 
 \hypertarget{legacy}{%
@@ -219,5 +333,7 @@ car {[}cons {[}x; y{]}{]} = x cdr {[}cons {[}x; y{]}{]} = y
 \item
   \href{http://www-formal.stanford.edu/jmc/slides/wrong/wrong-sli/wrong-sli.html}{HUMAN-LEVEL
   AI IS HARDER THAN IT SEEMED IN 1955}
+\item
+  kk
 \end{itemize}
 \end{frame}
