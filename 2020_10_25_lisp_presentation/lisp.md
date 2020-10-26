@@ -44,7 +44,7 @@
 
 * AI (term coined by McCarthy)
     * They thought they were almost there in the 50s / 60s.
-    * McCarthy wrote a "funny paper" later "HUMAN-LEVEL AI IS HARDER THAN IT SEEMED IN 1955"
+    * McCarthy wrote a "funny paper" later "HUMAN-LEVEL AI IS HARDER THAN IT SEEMED IN 1955" (2006)
     * Chess player (beginning of CS game theory).
 * "Mathematical language".
 * Programming the Advice Taker (proposed in 1958).

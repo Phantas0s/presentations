@@ -32,5 +32,5 @@ clean: phony
 	@rm -rf ./output
 	@echo "output folder deleted"
 
-presentation: phony output/style.pdf
+run: phony output/style.pdf
 	okular --presentation -p 0 output/$(NAME).pdf &
