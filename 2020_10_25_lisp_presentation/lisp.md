@@ -229,13 +229,10 @@ Characters: `(` `.` `)`
 * Emacs Lisp
 * Scheme
 
-## xkcd
-
-![Parentheses?](https://imgs.xkcd.com/comics/lisp_cycles.png)
-
 ## References
 
 * [Slides - https://github.com/Phantas0s/presentations/](https://github.com/Phantas0s/presentations/)
 * [HUMAN-LEVEL AI IS HARDER THAN IT SEEMED IN 1955](http://www-formal.stanford.edu/jmc/slides/wrong/wrong-sli/wrong-sli.html)
 * [History of Lisp](http://jmc.stanford.edu/articles/lisp/lisp.pdf) 
 * [Page on John McCarty (all papers)](http://jmc.stanford.edu/)
+* [xkcd](https://imgs.xkcd.com/comics/lisp_cycles.png)
