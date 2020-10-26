@@ -93,6 +93,7 @@ Characters: `(` `.` `)`
     * Same input potentially lead to different output.
 * Inspired by Church’s lambda-notation (1936).
     * Turing Machine (1936) "too complicated".
+* Function composition to create new function
 
 ## Linked List (basic data structure)
 
@@ -104,18 +105,30 @@ Characters: `(` `.` `)`
 | `(cons 42 (cons 69 613)))`
 ![Pointer diagram](images/cons-cell.png)
 
-## SRSLY?
+## ???
 
-* IBM 704 haunting even most modern LISP
+* Relics from IBM 704 memory access.
 
 | `caddr[x] for car[cdr[cdr[x]]`
 | `(caddr x) equivalent to (car (cdr (cdr x))))`
 
-* About not using single letter for atomic symbol like in mathematics:
-
 > "Second, it is convenient to allow English words and phrases to stand for atomic entities for mnemonic reasons" - John McCarthy (paper)
 
-* ... what about 
+* ... what about other programmers?
+
+## Going Through a List
+
+* Need to go from cdr to cdr to go through the list:
+
+## Garbage collection
+
+> "... formerly pointed cannot be reached by a car − cdr chain from any base register. Such a register may be considered abandoned
+by the program because its contents can no longer be found by any possible
+program; hence its contents are no longer of interest, and so we would like to
+have it back on the free-storage list. This comes about in the following way.
+Nothing happens until the program runs out of free storage. When a free
+register is wanted, and there is none left on the free-storage list, a reclamation7
+cycle starts.
 
 
 ### Lists

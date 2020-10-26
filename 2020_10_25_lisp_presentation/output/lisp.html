@@ -239,22 +239,16 @@ cdr {[}cons {[}x; y{]}{]} = y
 \end{block}
 \end{frame}
 
-\begin{frame}[fragile]{SRSLY?}
-\protect\hypertarget{srsly}{}
+\begin{frame}[fragile]{???}
+\protect\hypertarget{section}{}
 \begin{itemize}
 \tightlist
 \item
-  IBM 704 haunting even most modern LISP
+  Relics from IBM 704 memory access.
 \end{itemize}
 
 \texttt{caddr{[}x{]}\ for\ car{[}cdr{[}cdr{[}x{]}{]}}~\\
 \texttt{(caddr\ x)\ equivalent\ to\ (car\ (cdr\ (cdr\ x))))}
-
-\begin{itemize}
-\tightlist
-\item
-  About not using single letter for atomic symbol like in mathematics:
-\end{itemize}
 
 \begin{quote}
 ``Second, it is convenient to allow English words and phrases to stand
@@ -264,8 +258,31 @@ for atomic entities for mnemonic reasons'' - John McCarthy (paper)
 \begin{itemize}
 \tightlist
 \item
-  \ldots{} what about
+  \ldots{} what about other programmers?
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Going Through a List}
+\protect\hypertarget{going-through-a-list}{}
+\begin{itemize}
+\tightlist
+\item
+  Need to go from cdr to cdr to go through the list:
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Garbage collection}
+\protect\hypertarget{garbage-collection}{}
+\begin{quote}
+"\ldots{} formerly pointed cannot be reached by a car − cdr chain from
+any base register. Such a register may be considered abandoned by the
+program because its contents can no longer be found by any possible
+program; hence its contents are no longer of interest, and so we would
+like to have it back on the free-storage list. This comes about in the
+following way. Nothing happens until the program runs out of free
+storage. When a free register is wanted, and there is none left on the
+free-storage list, a reclamation7 cycle starts.
+\end{quote}
 
 \begin{block}{Lists}
 \protect\hypertarget{lists}{}
