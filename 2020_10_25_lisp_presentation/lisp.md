@@ -1,6 +1,6 @@
 % Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I
 % Matthieu Cneude
-% @Cneude_matthieu
+% @Cneude_Matthieu
 
 # Introduction
 
@@ -10,20 +10,24 @@
     * Sorry if I did!
 * Feedback welcome.
 
-## Who's John McCarthy
+## John McCarthy?
 
-* TODO
+* Born September 4, 1927 in Boston, Massachusetts.
+* Pioneer who contributed to AI, Internet, the web.
+* At MIT from 1958 to 1962 (then Standford university).
+* A. M. Turing Award from Association for Computing Machinery, 1971.
+* "He flew planes, climbed mountains, and traveled to the Soviet Union and China in the 1960s and 70s at a time when it was a major challenge."
+
+## A bit of Context
+
+* Paper is from 1960.
 * The part II of this paper has never been written.
-     * What
-
-## A bit of context
-
-* LISP and Fortran were written for the IBM 704 (available at MIT).
+* Lisp and Fortran were written for the IBM 704 (available at MIT).
     * "Only computer which can handle complex math" - Wikipedia
-* Only Fortran older than LISP.
-    * One of the oldest high level programming language (non-assembly language).
-* Today, LISP is a family of languages
-    * Many "dialects*
+* Second oldest high level programming language (non-assembly language).
+    * Only Fortran older than Lisp.
+* Today, Lisp is a family of languages
+    * Many "dialects"
     * This paper is the foundation of all of these languages... and more (JINGLE!).
 
 ## IBM 704
@@ -34,17 +38,16 @@
 
 * IPL2 (1956) - List processing in Assembly.
 * Fortran (1957) - No list processing
-* LISP (for LISt Processing) (1962?)
+* Lisp (for LISt Processing) (1959-1962?)
 
-## Goals of LISP
+## Why Lisp?
 
 * AI (term coined by McCarthy)
     * They thought they were almost there in the 50s / 60s.
-    * McCarthy wrote a "funny paper" later "HUMAN-LEVEL AI IS HARDER THAN IT SEEMED IN 1955" (
-* Chess player (beginning of CS game theory).
+    * McCarthy wrote a "funny paper" later "HUMAN-LEVEL AI IS HARDER THAN IT SEEMED IN 1955"
+    * Chess player (beginning of CS game theory).
+* "Mathematical language".
 * Programming the Advice Taker (proposed in 1958).
-
-* ... what about for people to understand? (*MORE ON THAT LATER*)
 
 # The Paper
 
@@ -53,9 +56,9 @@
 > "representing information about the world by sentences in a suitable formal language and a reasoning program that would decide what to do by making logical inferences. Representing sentences by list structure seemed appropriate - it still is - and a list processing language also seemed appropriate for programming the operations
 involved in deduction - and still is." - McCarthy, 1979
 
-* From the paper: LISP handle declarative and imperative sentences.
+* From the paper: Lisp handle declarative and imperative sentences using lists.
 
-## S-Expression and M-expressions
+## The notation: S-Expression and M-expressions
 
 ### S-Expression (paper)
 
@@ -69,93 +72,170 @@ Characters: `(` `.` `)`
 | car [cons [x; y]] = x
 | cdr [cons [x; y]] = y
 
-### Actual code (Scheme)
+### Actual code (Scheme - dialect of Lisp)
 
 | (car (cons x y))
 | (cdr (cons x y))
+
+## Functions
+
+* Functions first class citizen (code as data)
+* Precise that it's **not** the usual mathematics term "function".
+* Inspired by Church’s lambda-notation (1936).
+    * Turing Machine (1936) "too complicated".
+* Use of lambda expression as bedrock for computation.
+* Function composition to create new function.
+
+### Example (Scheme)
+
+```
+(+ 2 3)
+(apply + '(1 2))
+((lambda (x) (+ x x)) 2)
+```
 
 ## Recursion
 
 * Describe formalism for defining function recursively.
 * First programming language with recursion.
 
-![Recursion!](images/recursive_function.png)
+### Example (Scheme)
+
+```
+(define (factorial n)
+    (if (= n 0)
+        1
+        (* n (factorial (- n 1))) ))
+```
 
 ## Conditionals
 
-* Invented conditional expression from propositional logic
-    * Predicate: function returning #T or #F
-* Idea of conditional in programming introduced here (not present in Assembly)
+* First use of conditional expressions in a programming language.
+    * Predicates: function returning #T or #F.
+    * Essential for testing recursive base cases.
+* Fortran had IF but it was "very awkward to use" - McCarthy 1979.
 
-## Functions
-
-* Precise that it's **not** the usual mathematics term "function".
-    * Same input potentially lead to different output.
-* Inspired by Church’s lambda-notation (1936).
-    * Turing Machine (1936) "too complicated".
-* Function composition to create new function
+### Example (Scheme)
+```
+(cond ((equal? x "#t") #t)
+	((equal? x "#f") #f)
+	(else x))
+```
 
 ## Linked List (basic data structure)
 
-### Modern LISP (Scheme)
+### Modern Lisp (Scheme)
 | `(car (cons x y))`
 | `(cdr (cons x y))`
 
-### Pointer diagram
-| `(cons 42 (cons 69 613)))`
+### Box and Pointer diagram
+| `(cons 42 (cons 69 (cons 613 '()))`
 ![Pointer diagram](images/cons-cell.png)
 
 ## ???
 
-* Relics from IBM 704 memory access.
+* car? cdr? WAT???
+    * Nice heritage from IBM 704 memory access.
 
 | `caddr[x] for car[cdr[cdr[x]]`
-| `(caddr x) equivalent to (car (cdr (cdr x))))`
+| `(caddr x) for (car (cdr (cdr x))))`
 
-> "Second, it is convenient to allow English words and phrases to stand for atomic entities for mnemonic reasons" - John McCarthy (paper)
+* About functions which have not one letter
+
+> " ... is convenient to allow English words and phrases to stand for atomic entities for mnemonic reasons" - John McCarthy (paper)
 
 * ... what about other programmers?
 
-## Going Through a List
-
-* Need to go from cdr to cdr to go through the list:
-
 ## Garbage collection
 
-> "... formerly pointed cannot be reached by a car − cdr chain from any base register. Such a register may be considered abandoned
-by the program because its contents can no longer be found by any possible
-program; hence its contents are no longer of interest, and so we would like to
-have it back on the free-storage list. This comes about in the following way.
-Nothing happens until the program runs out of free storage. When a free
-register is wanted, and there is none left on the free-storage list, a reclamation7
-cycle starts.
+> "... formerly pointed cannot be reached by a car − cdr chain from any base register. Such a register may be considered abandoned by the program because its contents can no longer be found by any possible program; hence its contents are no longer of interest, and so we would like to have it back on the free-storage list. This comes about in the following way.  Nothing happens until the program runs out of free storage. When a free register is wanted, and there is none left on the free-storage list, a reclamation cycle starts.
 
+## Apply and Eval
 
-### Lists
+* "Universal S-Function apply"
+    * Universal turing machine
+    * `apply[f ; args] = eval[cons[f ; appq[args]]; NIL],`
 
-* List data structure
-* car / cdr from IBM 704
-    * Curse following us till NOW
+> "Writing eval required inventing a notation representing LISP functions as LISP data, and such a notation was devised for the purposes of the paper with no thought that it would be used to express LISP programs in practice" - McCarthy, 1979
+
+## Apply (Lisp Programmer's Manual 1.5)
+
+![Apply](images/apply.png)
+
+## Eval (Lisp Programmer's Manual 1.5)
+
+![Eval](images/eval.png)
+
+## Eval (Scheme)
+
+```
+(define (eval exp env)
+  (cond ((self-evaluating? exp) exp)
+        ((variable? exp) (lookup-variable-value exp env))
+        ((quoted? exp) (text-of-quotation exp))
+        ((assignment? exp) (eval-assignment exp env))
+        ((definition? exp) (eval-definition exp env))
+        ((if? exp) (eval-if exp env))
+        ((lambda? exp)
+         (make-procedure (lambda-parameters exp)
+                         (lambda-body exp)
+                         env))
+        ((begin? exp) 
+         (eval-sequence (begin-actions exp) env))
+        ((cond? exp) (eval (cond->if exp) env))
+        ((application? exp)
+         (apply (eval (operator exp) env)
+                (list-of-values (operands exp) env)))
+        (else
+         (error "Unknown expression type -- EVAL" exp))))
+
+```
+
+## Apply (Scheme)
+
+```
+(define (apply procedure arguments)
+  (cond ((primitive-procedure? procedure)
+         (apply-primitive-procedure procedure arguments))
+        ((compound-procedure? procedure)
+         (eval-sequence
+           (procedure-body procedure)
+           (extend-environment
+             (procedure-parameters procedure)
+             arguments
+             (procedure-environment procedure))))
+        (else
+         (error
+          "Unknown procedure type -- APPLY" procedure))))
+```
 
 # Legacy
 
 ## The most important
 
-* First functional programming language
-* Smalltalk (70s) was very influenced by LISP (today: Pharo)
-    * One rule
-    * Garbage collection
-    * ... but don't like special forms
+* Everything we saw before (recursion, conditionals, lambdas...).
+    * Lambdas implemented in mainstream programming languages (Java, C#, C++ ...).
+* First functional programming language.
+* Smalltalk (70s) was very influenced by Lisp (today: Pharo).
+    * One of the first OOP language.
+    * One rule "almost everything is function" was appealing to Alan Kay.
+        * In smalltalk, everything is an object.
+    * Garbage collection.
 
-## LISP today
+## Lisp today
 
-* Common LISP
-* Emacs LISP
 * Clojure
+* Common Lisp
+* Emacs Lisp
 * Scheme
+
+## xkcd
+
+![Parentheses?](https://imgs.xkcd.com/comics/lisp_cycles.png)
 
 ## References
 
-* Slides TODO
+* [Slides - https://github.com/Phantas0s/presentations/](https://github.com/Phantas0s/presentations/)
 * [HUMAN-LEVEL AI IS HARDER THAN IT SEEMED IN 1955](http://www-formal.stanford.edu/jmc/slides/wrong/wrong-sli/wrong-sli.html)
-* kk
+* [History of Lisp](http://jmc.stanford.edu/articles/lisp/lisp.pdf) 
+* [Page on John McCarty (all papers)](http://jmc.stanford.edu/)

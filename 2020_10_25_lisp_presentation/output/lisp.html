@@ -18,29 +18,29 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Who's John McCarthy}
-\protect\hypertarget{whos-john-mccarthy}{}
+\begin{frame}{John McCarthy?}
+\protect\hypertarget{john-mccarthy}{}
 \begin{itemize}
 \tightlist
 \item
-  TODO
+  Pioneer who contributed to AI, Internet, the web.
 \item
-  The part II of this paper has never been written.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    What
-  \end{itemize}
+  At MIT in the 60's.
+\item
+  ``He flew planes, climbed mountains, and traveled to the Soviet Union
+  and China in the 1960s and 70s at a time when it was a major
+  challenge.''
 \end{itemize}
 \end{frame}
 
-\begin{frame}{A bit of context}
+\begin{frame}{A bit of Context}
 \protect\hypertarget{a-bit-of-context}{}
 \begin{itemize}
 \tightlist
 \item
-  LISP and Fortran were written for the IBM 704 (available at MIT).
+  The part II of this paper has never been written.
+\item
+  Lisp and Fortran were written for the IBM 704 (available at MIT).
 
   \begin{itemize}
   \tightlist
@@ -48,21 +48,20 @@
     ``Only computer which can handle complex math'' - Wikipedia
   \end{itemize}
 \item
-  Only Fortran older than LISP.
+  Second oldest high level programming language (non-assembly language).
 
   \begin{itemize}
   \tightlist
   \item
-    One of the oldest high level programming language (non-assembly
-    language).
+    Only Fortran older than Lisp.
   \end{itemize}
 \item
-  Today, LISP is a family of languages
+  Today, Lisp is a family of languages
 
   \begin{itemize}
   \tightlist
   \item
-    Many "dialects*
+    Many ``dialects''
   \item
     This paper is the foundation of all of these languages\ldots{} and
     more (JINGLE!).
@@ -88,13 +87,14 @@
 \item
   Fortran (1957) - No list processing
 \item
-  LISP (for LISt Processing) (1962?)
+  Lisp (for LISt Processing) (1959-1962?)
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Goals of LISP}
-\protect\hypertarget{goals-of-lisp}{}
+\begin{frame}{Why Lisp?}
+\protect\hypertarget{why-lisp}{}
 \begin{itemize}
+\tightlist
 \item
   AI (term coined by McCarthy)
 
@@ -104,15 +104,14 @@
     They thought they were almost there in the 50s / 60s.
   \item
     McCarthy wrote a ``funny paper'' later ``HUMAN-LEVEL AI IS HARDER
-    THAN IT SEEMED IN 1955'' (
+    THAN IT SEEMED IN 1955''
+  \item
+    Chess player (beginning of CS game theory).
   \end{itemize}
 \item
-  Chess player (beginning of CS game theory).
+  ``Mathematical language''.
 \item
   Programming the Advice Taker (proposed in 1958).
-\item
-  \ldots{} what about for people to understand? (\emph{MORE ON THAT
-  LATER})
 \end{itemize}
 \end{frame}
 
@@ -133,12 +132,13 @@ seemed appropriate for programming the operations involved in deduction
 \begin{itemize}
 \tightlist
 \item
-  From the paper: LISP handle declarative and imperative sentences.
+  From the paper: Lisp handle declarative and imperative sentences using
+  lists.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{S-Expression and M-expressions}
-\protect\hypertarget{s-expression-and-m-expressions}{}
+\begin{frame}[fragile]{The notation: S-Expression and M-expressions}
+\protect\hypertarget{the-notation-s-expression-and-m-expressions}{}
 \begin{block}{S-Expression (paper)}
 \protect\hypertarget{s-expression-paper}{}
 Characters: \texttt{(} \texttt{.} \texttt{)}
@@ -153,14 +153,47 @@ car {[}cons {[}x; y{]}{]} = x\\
 cdr {[}cons {[}x; y{]}{]} = y
 \end{block}
 
-\begin{block}{Actual code (Scheme)}
-\protect\hypertarget{actual-code-scheme}{}
+\begin{block}{Actual code (Scheme - dialect of Lisp)}
+\protect\hypertarget{actual-code-scheme---dialect-of-lisp}{}
 (car (cons x y))\\
 (cdr (cons x y))
 \end{block}
 \end{frame}
 
-\begin{frame}{Recursion}
+\begin{frame}[fragile]{Functions}
+\protect\hypertarget{functions}{}
+\begin{itemize}
+\tightlist
+\item
+  Functions first class citizen (code as data)
+\item
+  Precise that it's \textbf{not} the usual mathematics term
+  ``function''.
+\item
+  Inspired by Church's lambda-notation (1936).
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Turing Machine (1936) ``too complicated''.
+  \end{itemize}
+\item
+  Use of lambda expression as bedrock for computation.
+\item
+  Function composition to create new function.
+\end{itemize}
+
+\begin{block}{Example (Scheme)}
+\protect\hypertarget{example-scheme}{}
+\begin{verbatim}
+(+ 2 3)
+(apply + '(1 2))
+((lambda (x) (+ x x)) 2)
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Recursion}
 \protect\hypertarget{recursion}{}
 \begin{itemize}
 \tightlist
@@ -170,66 +203,56 @@ cdr {[}cons {[}x; y{]}{]} = y
   First programming language with recursion.
 \end{itemize}
 
-\begin{figure}
-\centering
-\includegraphics{images/recursive_function.png}
-\caption{Recursion!}
-\end{figure}
+\begin{block}{Example (Scheme)}
+\protect\hypertarget{example-scheme-1}{}
+\begin{verbatim}
+(define (factorial n)
+    (if (= n 0)
+        1
+        (* n (factorial (- n 1))) ))
+\end{verbatim}
+\end{block}
 \end{frame}
 
-\begin{frame}{Conditionals}
+\begin{frame}[fragile]{Conditionals}
 \protect\hypertarget{conditionals}{}
 \begin{itemize}
 \tightlist
 \item
-  Invented conditional expression from propositional logic
+  First use of conditional expressions in a programming language.
 
   \begin{itemize}
   \tightlist
   \item
-    Predicate: function returning \#T or \#F
+    Predicates: function returning \#T or \#F.
+  \item
+    Essential for testing recursive base cases.
   \end{itemize}
 \item
-  Idea of conditional in programming introduced here (not present in
-  Assembly)
+  Fortran had IF but it was ``very awkward to use'' - McCarthy 1979.
 \end{itemize}
-\end{frame}
 
-\begin{frame}{Functions}
-\protect\hypertarget{functions}{}
-\begin{itemize}
-\tightlist
-\item
-  Precise that it's \textbf{not} the usual mathematics term
-  ``function''.
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Same input potentially lead to different output.
-  \end{itemize}
-\item
-  Inspired by Church's lambda-notation (1936).
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Turing Machine (1936) ``too complicated''.
-  \end{itemize}
-\end{itemize}
+\begin{block}{Example (Scheme)}
+\protect\hypertarget{example-scheme-2}{}
+\begin{verbatim}
+(cond ((equal? x "#t") #t)
+    ((equal? x "#f") #f)
+    (else x))
+\end{verbatim}
+\end{block}
 \end{frame}
 
 \begin{frame}[fragile]{Linked List (basic data structure)}
 \protect\hypertarget{linked-list-basic-data-structure}{}
-\begin{block}{Modern LISP (Scheme)}
+\begin{block}{Modern Lisp (Scheme)}
 \protect\hypertarget{modern-lisp-scheme}{}
 \texttt{(car\ (cons\ x\ y))}~\\
 \texttt{(cdr\ (cons\ x\ y))}
 \end{block}
 
-\begin{block}{Pointer diagram}
-\protect\hypertarget{pointer-diagram}{}
-\texttt{(cons\ 42\ (cons\ 69\ 613)))}
+\begin{block}{Box and Pointer diagram}
+\protect\hypertarget{box-and-pointer-diagram}{}
+\texttt{(cons\ 42\ (cons\ 69\ (cons\ 613\ \textquotesingle{}()))}
 
 \begin{figure}
 \centering
@@ -244,30 +267,33 @@ cdr {[}cons {[}x; y{]}{]} = y
 \begin{itemize}
 \tightlist
 \item
-  Relics from IBM 704 memory access.
+  car? cdr? WAT???
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Nice heritage from IBM 704 memory access.
+  \end{itemize}
 \end{itemize}
 
 \texttt{caddr{[}x{]}\ for\ car{[}cdr{[}cdr{[}x{]}{]}}~\\
-\texttt{(caddr\ x)\ equivalent\ to\ (car\ (cdr\ (cdr\ x))))}
+\texttt{(caddr\ x)\ for\ (car\ (cdr\ (cdr\ x))))}
+
+\begin{itemize}
+\tightlist
+\item
+  About functions which have not one letter
+\end{itemize}
 
 \begin{quote}
-``Second, it is convenient to allow English words and phrases to stand
-for atomic entities for mnemonic reasons'' - John McCarthy (paper)
+" \ldots{} is convenient to allow English words and phrases to stand for
+atomic entities for mnemonic reasons" - John McCarthy (paper)
 \end{quote}
 
 \begin{itemize}
 \tightlist
 \item
   \ldots{} what about other programmers?
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Going Through a List}
-\protect\hypertarget{going-through-a-list}{}
-\begin{itemize}
-\tightlist
-\item
-  Need to go from cdr to cdr to go through the list:
 \end{itemize}
 \end{frame}
 
@@ -281,25 +307,94 @@ program; hence its contents are no longer of interest, and so we would
 like to have it back on the free-storage list. This comes about in the
 following way. Nothing happens until the program runs out of free
 storage. When a free register is wanted, and there is none left on the
-free-storage list, a reclamation7 cycle starts.
+free-storage list, a reclamation cycle starts.
 \end{quote}
+\end{frame}
 
-\begin{block}{Lists}
-\protect\hypertarget{lists}{}
+\begin{frame}[fragile]{Apply and Eval}
+\protect\hypertarget{apply-and-eval}{}
 \begin{itemize}
 \tightlist
 \item
-  List data structure
-\item
-  car / cdr from IBM 704
+  ``Universal S-Function apply''
 
   \begin{itemize}
   \tightlist
   \item
-    Curse following us till NOW
+    Universal turing machine
+  \item
+    \texttt{apply{[}f\ ;\ args{]}\ =\ eval{[}cons{[}f\ ;\ appq{[}args{]}{]};\ NIL{]},}
   \end{itemize}
 \end{itemize}
-\end{block}
+
+\begin{quote}
+``Writing eval required inventing a notation representing LISP functions
+as LISP data, and such a notation was devised for the purposes of the
+paper with no thought that it would be used to express LISP programs in
+practice'' - McCarthy, 1979
+\end{quote}
+\end{frame}
+
+\begin{frame}{Apply (Lisp Programmer's Manual 1.5)}
+\protect\hypertarget{apply-lisp-programmers-manual-1.5}{}
+\begin{figure}
+\centering
+\includegraphics{images/apply.png}
+\caption{Apply}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Eval (Lisp Programmer's Manual 1.5)}
+\protect\hypertarget{eval-lisp-programmers-manual-1.5}{}
+\begin{figure}
+\centering
+\includegraphics{images/eval.png}
+\caption{Eval}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Eval (Scheme)}
+\protect\hypertarget{eval-scheme}{}
+\begin{verbatim}
+(define (eval exp env)
+  (cond ((self-evaluating? exp) exp)
+        ((variable? exp) (lookup-variable-value exp env))
+        ((quoted? exp) (text-of-quotation exp))
+        ((assignment? exp) (eval-assignment exp env))
+        ((definition? exp) (eval-definition exp env))
+        ((if? exp) (eval-if exp env))
+        ((lambda? exp)
+         (make-procedure (lambda-parameters exp)
+                         (lambda-body exp)
+                         env))
+        ((begin? exp) 
+         (eval-sequence (begin-actions exp) env))
+        ((cond? exp) (eval (cond->if exp) env))
+        ((application? exp)
+         (apply (eval (operator exp) env)
+                (list-of-values (operands exp) env)))
+        (else
+         (error "Unknown expression type -- EVAL" exp))))
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Apply (Scheme)}
+\protect\hypertarget{apply-scheme}{}
+\begin{verbatim}
+(define (apply procedure arguments)
+  (cond ((primitive-procedure? procedure)
+         (apply-primitive-procedure procedure arguments))
+        ((compound-procedure? procedure)
+         (eval-sequence
+           (procedure-body procedure)
+           (extend-environment
+             (procedure-parameters procedure)
+             arguments
+             (procedure-environment procedure))))
+        (else
+         (error
+          "Unknown procedure type -- APPLY" procedure))))
+\end{verbatim}
 \end{frame}
 
 \hypertarget{legacy}{%
@@ -310,35 +405,59 @@ free-storage list, a reclamation7 cycle starts.
 \begin{itemize}
 \tightlist
 \item
-  First functional programming language
-\item
-  Smalltalk (70s) was very influenced by LISP (today: Pharo)
+  Everything we saw before (recursion, conditionals, lambdas\ldots)
 
   \begin{itemize}
   \tightlist
   \item
-    One rule
+    Lambdas implemented in most mainstream programming languages
+  \end{itemize}
+\item
+  First functional programming language
+\item
+  Smalltalk (70s) was very influenced by Lisp (today: Pharo)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    One of the first OOP language
+  \item
+    One rule ``almost everything is function'' was appealing to Alan
+    Kay.
+
+    \begin{itemize}
+    \tightlist
+    \item
+      In smalltalk, everything is an object
+    \end{itemize}
   \item
     Garbage collection
-  \item
-    \ldots{} but don't like special forms
   \end{itemize}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{LISP today}
+\begin{frame}{Lisp today}
 \protect\hypertarget{lisp-today}{}
 \begin{itemize}
 \tightlist
 \item
-  Common LISP
-\item
-  Emacs LISP
-\item
   Clojure
+\item
+  Common Lisp
+\item
+  Emacs Lisp
 \item
   Scheme
 \end{itemize}
+\end{frame}
+
+\begin{frame}{xkcd}
+\protect\hypertarget{xkcd}{}
+\begin{figure}
+\centering
+\includegraphics{https://imgs.xkcd.com/comics/lisp_cycles.png}
+\caption{Parentheses?}
+\end{figure}
 \end{frame}
 
 \begin{frame}{References}
@@ -346,11 +465,14 @@ free-storage list, a reclamation7 cycle starts.
 \begin{itemize}
 \tightlist
 \item
-  Slides TODO
+  \href{https://github.com/Phantas0s/presentations/}{Slides -
+  https://github.com/Phantas0s/presentations/}
 \item
   \href{http://www-formal.stanford.edu/jmc/slides/wrong/wrong-sli/wrong-sli.html}{HUMAN-LEVEL
   AI IS HARDER THAN IT SEEMED IN 1955}
 \item
-  kk
+  \href{http://jmc.stanford.edu/articles/lisp/lisp.pdf}{History of Lisp}
+\item
+  \href{http://jmc.stanford.edu/}{Page on John McCarty (all papers)}
 \end{itemize}
 \end{frame}
